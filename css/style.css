@@ -1,0 +1,214 @@
+body {
+    background-color: #900E0E;
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.logo {
+    width: 80%;
+    max-width: 180px;
+    height: auto;
+}
+
+h1{
+    color: white;
+    font-weight: bold;
+    margin: 0; /* Menghilangkan margin default dari h1 */
+}
+
+p{
+    color: white;
+    margin: 0; /* Menghilangkan margin default dari p */
+}
+
+.sidebar {
+    width: 230px;
+    background-color: white;
+    color: black; /* Mengubah warna teks sidebar menjadi hitam */
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    padding: 15px;
+    text-align: left;
+}
+
+.sidebar nav ul li a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar nav ul li a:hover {
+    color: white;
+    background-color: #900E0E;
+    border-radius: 5px;
+    height: 48px;
+    width: 212px;
+}
+
+.sidebar nav ul li a img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.main-content {
+    margin-left: 230px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header p {
+    margin: 0;
+    color: white;
+    font-size: 14px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px; 
+}
+
+.card {
+    background-color: #f3f3f3;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+}
+
+.card-text p {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-icon {
+    margin-right: 5px;
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #900E0E;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.card-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-number {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-percentage {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.percentage {
+    font-size: 14px;
+    color: green;
+}
+
+.recent-orders-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recent-orders-container h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: start;
+}
+
+.next-button {
+    padding: 10px 20px;
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    color: #900E0E;
+    background-color: white;
+}
+
