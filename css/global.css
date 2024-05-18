@@ -1,0 +1,65 @@
+:root {
+  --primary: #900E0E;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins";
+  z-index: 0;
+}
+
+.flex { display: flex; }
+.col { flex-direction: column; }
+
+input.auth {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  margin: 10px 0;
+  border-bottom: 1px solid grey;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+button.filled {
+  border-radius: 10px;
+  background-color: var(--primary);
+  padding: 8px 0;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+button.filled:hover {
+  background-color: color-mix(in srgb, var(--primary) 80%, white);
+}
+
+button.outlined {
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 8px 16px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+button.outlined:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Bold.ttf');
+  font-weight: bold;
+}
