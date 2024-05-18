@@ -22,6 +22,12 @@
                     Order List
                 </a>
             </li>
+            <li>
+                <a href="order_detail.php">
+                    <img src="assets/ic_orders.svg" alt="Order List Icon">
+                    Order detail
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

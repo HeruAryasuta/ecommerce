@@ -20,18 +20,18 @@ body {
 h1{
     color: white;
     font-weight: bold;
-    margin: 0; /* Menghilangkan margin default dari h1 */
+    margin: 0; 
 }
 
 p{
     color: white;
-    margin: 0; /* Menghilangkan margin default dari p */
+    margin: 0; 
 }
 
 .sidebar {
     width: 230px;
     background-color: white;
-    color: black; /* Mengubah warna teks sidebar menjadi hitam */
+    color: black; 
     padding-top: 20px;
     position: fixed;
     height: 100%;
@@ -210,5 +210,106 @@ th {
 .next-button:hover {
     color: #900E0E;
     background-color: white;
+}
+
+ /* order details*/
+
+.order-container {
+    margin-top: 20px;
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order-container h2 {
+    margin-top: 0;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* card */
+
+.cards-order-details{
+    display: flex;
+    flex-direction: row; 
+    gap: 150px;
+}
+
+.card-order-details {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.card-content-order-details {
+    display: flex;
+    align-items: center;
+}
+
+.card-icon-order-details {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background-color: #900E0E;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.info {
+    color: #333;
+}
+
+.info p {
+    margin: 5px 0;
+}
+
+.customer {
+    color: #900E0E;
+    font-weight: bolder;
+}
+
+.name, .phone {
+    color: grey;
+    font-weight: 500;
+}
+
+/* product */
+
+.table-container-order-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px; 
+    overflow: auto; 
+}
+
+.table-container-order-details h2 {
+    color: #333; 
+    font-size: 20px; 
+    margin-bottom: 10px;
+}
+
+.order-table-order-details {
+    width: 100%;
+    border-collapse: collapse; /* Menggabungkan batas sel */
+}
+
+.order-table-order-details th, .order-table-order-details td {
+    padding: 8px;
+    text-align: left;
+}
+
+.order-table-order-details th {
+    background-color: #f2f2f2;
 }
 
