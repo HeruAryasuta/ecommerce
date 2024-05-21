@@ -22,30 +22,36 @@ input.auth {
   outline: none;
 }
 
-button.filled {
-  border-radius: 10px;
+button.filled, .btn-filled {
+  border-radius: 8px;
   background-color: var(--primary);
   padding: 8px 0;
   border: none;
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }
-button.filled:hover {
+button.filled:hover, .btn-filled:hover {
   background-color: color-mix(in srgb, var(--primary) 80%, white);
 }
 
-button.outlined {
-  border-radius: 10px;
+button.outlined, .btn-outlined {
+  border-radius: 8px;
   background-color: transparent;
   padding: 8px 16px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+button.outlined:hover, .btn-outlined:hover {
+  background-color: #FFF3;
+}
+
+button.outlined.active, .btn-outlined.active {
+  background-color: white;
   border: 1px solid var(--primary);
   color: var(--primary);
-  cursor: pointer;
-  font-weight: 600;
-}
-button.outlined:hover {
-  background-color: var(--primary);
-  color: white;
 }
 
 @font-face {

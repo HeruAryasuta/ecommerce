@@ -13,6 +13,8 @@ header {
 header button {
   display: flex;
   align-items: center;
+  padding: 8px 16px !important;
+  font-weight: 600;
 }
 header button:hover svg {
   fill: white;

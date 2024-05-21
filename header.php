@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./css/header.css">
 
 <header>
-  <button class="outlined" id="logout-btn">
+  <button class="outlined active" id="logout-btn">
     <span>ADMIN</span>
     <?php include "./assets/ic_dropdown.svg" ?>
   </button>

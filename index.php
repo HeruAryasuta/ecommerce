@@ -1,3 +1,19 @@
+<?php
+
+include "./helper/connection.php";
+include "./helper/auth.php";
+$dbh = new Dbh();
+$conn = $dbh->connect();
+
+$sql = "SELECT COUNT(*) as total FROM orders";
+$total = $conn->query($sql)->fetch_assoc()["total"];
+$sql = "SELECT COUNT(*) as total FROM orders WHERE status!='Selesai'";
+$antrian = $conn->query($sql)->fetch_assoc()["total"];
+$sql = "SELECT COUNT(*) as total FROM orders WHERE status='Selesai'";
+$selesai = $conn->query($sql)->fetch_assoc()["total"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +22,11 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 </head>
 <body>
     <?php include 'sidebar.php'; ?>
-    <?php include 'header.php'; ?>
     <div class="main-content">
         <div class="header">
             <h1>Dashboard</h1>
@@ -21,51 +37,40 @@
                 <div class="card-content">
                     <div class="card-text">
                         <p>Total Pemesanan</p>
-                        <div>
-                            <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
-                            <span class="card-number">250</span>
-                        </div>
                     </div>
                     <div class="card-stats">
+                        <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
+                        <span class="card-number"><?= $total ?></span>
                         <div class="card-percentage">
-                            <img src="assets/ic_arrow_up.png" alt="Arrow Up Icon" class="arrow-icon">
-                            <span class="percentage">34.7%</span>
+                            <span class="percentage"><?= number_format(($total / $total) * 100, 1) ?>%</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- card ke 2 -->
             <div class="card">
                 <div class="card-content">
                     <div class="card-text">
-                        <p>Total Pemesanan</p>
-                        <div>
-                            <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
-                            <span class="card-number">250</span>
-                        </div>
+                        <p>Antrian Pemesanan</p>
                     </div>
                     <div class="card-stats">
+                        <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
+                        <span class="card-number"><?= $antrian ?></span>
                         <div class="card-percentage">
-                            <img src="assets/ic_arrow_up.png" alt="Arrow Up Icon" class="arrow-icon">
-                            <span class="percentage">34.7%</span>
+                            <span class="percentage"><?= number_format(($antrian / $total) * 100, 1) ?>%</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- card ke 2 -->
             <div class="card">
                 <div class="card-content">
                     <div class="card-text">
-                        <p>Total Pemesanan</p>
-                        <div>
-                            <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
-                            <span class="card-number">250</span>
-                        </div>
+                        <p>Pemesanan Selesai</p>
                     </div>
                     <div class="card-stats">
+                        <img src="assets/ic_bag.svg" alt="Bag Icon" class="card-icon">
+                        <span class="card-number"><?= $selesai ?></span>
                         <div class="card-percentage">
-                            <img src="assets/ic_arrow_up.png" alt="Arrow Up Icon" class="arrow-icon">
-                            <span class="percentage">34.7%</span>
+                            <span class="percentage"><?= number_format(($selesai / $total) * 100, 1) ?>%</span>
                         </div>
                     </div>
                 </div>
@@ -86,40 +91,58 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Data Order 1 -->
-            <tr>
-                <td><input type="checkbox" name="order" value="12345"></td>
-                <td>Product A</td>
-                <td>12345</td>
-                <td>2024-05-18</td>
-                <td>John Doe</td>
-                <td>Shipped</td>
-                <td>RP 100.000</td>
-            </tr>
-            <!-- Data Order 2 -->
-            <tr>
-                <td><input type="checkbox" name="order" value="12345"></td>
-                <td>Product B</td>
-                <td>12346</td>
-                <td>2024-05-17</td>
-                <td>Jane Smith</td>
-                <td>Delivered</td>
-                <td>RP 100.000</td>
-            </tr>
-            <!-- Data Order 3 -->
-            <tr>
-                <td><input type="checkbox" name="order" value="12345"></td>
-                <td>Product C</td>
-                <td>12347</td>
-                <td>2024-05-16</td>
-                <td>Mike Johnson</td>
-                <td>Processing</td>
-                <td>RP 100.000</td>
-            </tr>
-            <!-- Dan seterusnya -->
+            <?php
+            
+            $sql = "SELECT orders.*, users.nama FROM orders LEFT JOIN users ON users.id=orders.idUser ORDER BY createdAt DESC LIMIT 6";
+            
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($order = $result->fetch_assoc()) {
+                    $date = date_create($order["createdAt"]);
+                    $idOrder = $order["id"];
+        
+                    $sqlKeranjang = "
+                      SELECT keranjang.amount * produk.harga as amount,
+                      produk.nama as namaProduk
+                      FROM keranjang LEFT JOIN produk ON produk.id=keranjang.idProduk
+                      WHERE keranjang.idOrder=$idOrder
+                    ";
+                    $resultKeranjang = $conn->query($sqlKeranjang);
+                    
+                    $daftarProduk = "";
+                    $amount = 0;
+                    if ($resultKeranjang->num_rows > 0) {
+                      while ($keranjang = $resultKeranjang->fetch_assoc()) {
+                        $namaProduk = $keranjang["namaProduk"];
+                        $daftarProduk = "$daftarProduk, $namaProduk";
+                        $amount += $keranjang["amount"];
+                      }
+                      $daftarProduk = substr($daftarProduk, 2);
+                    }
+
+                    ?>
+                    
+                    <tr class="order <?= $idOrder ?>">
+                        <td><input type="checkbox" name="order" value="12345"></td>
+                        <td><?= $daftarProduk ?></td>
+                        <td>#<?= $order["id"] ?></td>
+                        <td><?= date_format($date, "M j\\t\h, Y") ?></td>
+                        <td><?= $order["nama"] ?></td>
+                        <td><?= $order["status"] ?></td>
+                        <td>RP <?= number_format($amount) ?></td>
+                    </tr>
+                    
+                    <?php
+                }
+            }
+            
+            ?>
         </tbody>
     </table>
 </div>
     </div>
+
+    <script>setSidebar("nav-dashboard")</script>
+    <script src="./js/orders.js"></script>
 </body>
 </html>

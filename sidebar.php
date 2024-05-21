@@ -5,29 +5,32 @@
     <nav>
         <ul>
             <li>
-                <a href="dashboard.php">
-                    <img src="assets/ic_dashboard.svg" alt="Dashboard Icon">
-                    Dashboard
+                <a href="./" id="nav-dashboard">
+                    <?php include "./assets/ic_dashboard.svg" ?>
+                    DASHBOARD
                 </a>
             </li>
             <li>
-                <a href="all_products.php">
-                    <img src="assets/ic_products.svg" alt="All Products Icon">
-                    All Products
+                <a href="all_products.php" id="nav-products">
+                    <?php include "./assets/ic_products.svg" ?>
+                    ALL PRODUCTS
                 </a>
             </li>
             <li>
-                <a href="order_list.php">
-                    <img src="assets/ic_orders.svg" alt="Order List Icon">
-                    Order List
-                </a>
-            </li>
-            <li>
-                <a href="order_detail.php">
-                    <img src="assets/ic_orders.svg" alt="Order List Icon">
-                    Order detail
+                <a href="order_list.php" class="fill" id="nav-orders">
+                    <?php include "./assets/ic_orders.svg" ?>
+                    ORDER LIST
                 </a>
             </li>
         </ul>
     </nav>
 </div>
+
+<script>
+    function setSidebar(id) {
+        const active = document.getElementById(id)
+        active.classList.add("active")
+    }
+</script>
+
+<?php include 'header.php'; ?>
