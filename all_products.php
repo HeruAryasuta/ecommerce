@@ -23,10 +23,10 @@ include "./helper/auth.php";
                 <h1>All Products</h1>
                 <p>Home > All Products</p>
             </div>
-            <button class="outlined active" id="add">
+            <a href="./add_product.php" class="btn-outlined active" id="add">
                 <?php include "./assets/ic_add.svg" ?>
                 ADD NEW PRODUCT
-            </button>
+            </a>
         </div>
         
         <div id="products">
@@ -55,8 +55,7 @@ include "./helper/auth.php";
                                 <h2><?= $row["namaKategori"] ?></h2>
                                 <p class="price">Rp <?= number_format($row["harga"]) ?></p>
                             </div>
-                            <!-- TODO: to edit page -->
-                            <a href="#" class="details"><?php include "./assets/ic_details.svg" ?></a>
+                            <a href="./edit_product.php?id=<?= $id ?>" class="details"><?php include "./assets/ic_details.svg" ?></a>
                         </div>
                         <h1>Deskripsi</h1>
                         <p><?= $row["deskripsi"] ?></p>
